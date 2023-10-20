@@ -35,8 +35,23 @@ public class ItemPedidoServices {
 		return itemPedidoRepo.save(itemPedidoServices);
 	}
 	
-	public void deletarItemPedidoServices(ItemPedido itemPedidoServices) {
-		itemPedidoRepo.delete(itemPedidoServices);
-		
-	}
+	public Boolean deletarItemPedido(ItemPedido itemPedido) {
+        if(itemPedido == null)
+            return false;
+
+        ItemPedido itemPedidoExistente = buscarItemPedidoServicesPorId(itemPedido.getIdItemPedido());
+
+        if(itemPedidoExistente == null)
+            return false;
+
+        itemPedidoRepo.delete(itemPedido);
+
+        ItemPedido itemPedidoContinuaExistindo = buscarItemPedidoServicesPorId(itemPedido.getIdItemPedido());
+
+        if(itemPedidoContinuaExistindo == null)
+            return true;
+
+        return false;
+
+    }
 }

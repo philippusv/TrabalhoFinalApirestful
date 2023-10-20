@@ -35,7 +35,23 @@ public class CategoriaServices {
 		return categoriaRepo.save(categoria);
 	}
 	
-	public void deletarCategoria(Categoria categoria) {
-		categoriaRepo.delete(categoria);
-	}
+	public Boolean deletarCategoria(Categoria categoria) {
+        if(categoria == null)
+            return false;
+
+        Categoria categoriaExistente = buscarCategoriaPorId(categoria.getIdCategoria());
+
+        if(categoriaExistente == null)
+            return false;
+
+        categoriaRepo.delete(categoria);
+
+        Categoria categoriaContinuaExistindo = buscarCategoriaPorId(categoria.getIdCategoria());
+
+        if(categoriaContinuaExistindo == null)
+            return true;
+
+        return false;
+
+    }
 }

@@ -33,7 +33,23 @@ public class ProdutoServices {
 		return produtoRepo.save(produtoServices);
 	}
 	
-	public void deletarProdutoServices(Produto produtoServices) {
-		produtoRepo.delete(produtoServices);
-	}
+	public Boolean deletarProduto(Produto produto) {
+        if(produto == null)
+            return false;
+
+        Produto produtoExistente = buscarProdutoServicesPorId(produto.getIdProduto());
+
+        if(produtoExistente == null)
+            return false;
+
+        produtoRepo.delete(produto);
+
+        Produto produtoContinuaExistindo = buscarProdutoServicesPorId(produto.getIdProduto());
+
+        if(produtoContinuaExistindo == null)
+            return true;
+
+        return false;
+
+    }
 }

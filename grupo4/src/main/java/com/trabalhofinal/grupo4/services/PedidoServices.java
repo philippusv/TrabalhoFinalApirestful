@@ -32,8 +32,24 @@ public class PedidoServices {
 		return pedidoRepo.save(pedidoServices);
 	}
 	
-	public void deletarPedidoServices(Pedido pedidoServices) {
-		pedidoRepo.delete(pedidoServices);
-	}
+	public Boolean deletarPedido(Pedido pedido) {
+        if(pedido == null)
+            return false;
+
+        Pedido pedidoExistente = buscarPedidoServicesPorId(pedido.getIdPedido());
+
+        if(pedidoExistente == null)
+            return false;
+
+        pedidoRepo.delete(pedido);
+
+        Pedido pedidoContinuaExistindo = buscarPedidoServicesPorId(pedido.getIdPedido());
+
+        if(pedidoContinuaExistindo == null)
+            return true;
+
+        return false;
+
+    }
 }
 
