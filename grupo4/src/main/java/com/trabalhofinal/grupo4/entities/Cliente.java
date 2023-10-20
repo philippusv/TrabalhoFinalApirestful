@@ -1,6 +1,7 @@
 package com.trabalhofinal.grupo4.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -10,37 +11,43 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Cliente.class
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Cliente.class)
 
 @Entity
 @Table(name = "cliente")
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
 	private Integer idCliente;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "nome_completo")
 	private String nomeCompleto;
-	
+
 	@Column(name = "cpf")
 	private String cpf;
-	
+
 	@Column(name = "telefone")
-	private String telefone; 
-	
+	private String telefone;
+
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
-	
-	@Column(name = "id_endereco")
-	private Integer idEndereco;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
+
+	@OneToOne
+	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
+	private Endereco endereco;
 
 	public Integer getIdCliente() {
 		return idCliente;
@@ -90,22 +97,20 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getIdEndereco() {
-		return idEndereco;
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
-	public void setIdEndereco(Integer idEndereco) {
-		this.idEndereco = idEndereco;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
-	
-	
-	
-	
-//	id_cliente
-//	email
-//	nome_completo
-//	cpf
-//	telefone
-//	data_nascimento
-//	id_endereco
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 }

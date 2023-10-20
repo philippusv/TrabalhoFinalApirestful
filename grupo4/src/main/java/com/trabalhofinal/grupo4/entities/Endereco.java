@@ -8,40 +8,43 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Endereco.class
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Endereco.class)
 
 @Entity
 @Table(name = "endereco")
 public class Endereco {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_endereco")
 	private Integer idEndereco;
-	
+
 	@Column(name = "cep")
 	private String cep;
-	
+
 	@Column(name = "rua")
 	private String rua;
-	
+
 	@Column(name = "bairro")
 	private String bairro;
-	
+
 	@Column(name = "cidade")
 	private String cidade;
-	
+
 	@Column(name = "numero")
 	private String numero;
-	
+
 	@Column(name = "complemento")
 	private String complemento;
-	
+
 	@Column(name = "uf")
 	private String uf;
+
+	@OneToOne(mappedBy = "endereco")
+	private Cliente cliente;
 
 	public Integer getIdEndereco() {
 		return idEndereco;
@@ -106,6 +109,13 @@ public class Endereco {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
-	
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 }
