@@ -2,6 +2,7 @@ package com.trabalhofinal.grupo4.entities;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -11,37 +12,43 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Pedido.class
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Pedido.class)
 
 @Entity
 @Table(name = "pedido")
 public class Pedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
 	private Integer idPedido;
-	
+
 	@Column(name = "data_pedido")
 	private Date dataPedido;
-	
+
 	@Column(name = "data_entrega")
 	private Date dataEntrega;
-	
+
 	@Column(name = "data_envio")
 	private Date dataEnvio;
-	
+
 	@Column(name = "status")
 	private String status;
-	
+
 	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
-	
-	@Column(name = "id_cliente")
-	private Integer idCliente;
+
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> itensPedidos;
+
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+	private Cliente cliente;
 
 	public Integer getIdPedido() {
 		return idPedido;
@@ -91,14 +98,20 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
-	public Integer getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	
-	
+
+	public List<ItemPedido> getItensPedidos() {
+		return itensPedidos;
+	}
+
+	public void setItensPedidos(List<ItemPedido> itensPedidos) {
+		this.itensPedidos = itensPedidos;
+	}
 
 }

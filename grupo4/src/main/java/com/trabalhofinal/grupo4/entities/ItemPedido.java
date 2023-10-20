@@ -10,39 +10,42 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = ItemPedido.class
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = ItemPedido.class)
 
 @Entity
 @Table(name = "itempedido")
 public class ItemPedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_item_pedido")
 	private Integer idItemPedido;
-	
+
 	@Column(name = "quantidade")
 	private Integer quantidade;
-	
+
 	@Column(name = "preco_venda")
 	private BigDecimal precoVenda;
-	
-	//@Column(name = "percentual_desconto")
-	
+
+	// @Column(name = "percentual_desconto")
+
 	@Column(name = "valor_bruto")
 	private BigDecimal valorBruto;
-	
+
 	@Column(name = "valor_liquido")
 	private BigDecimal valorLiquido;
-	
-	@Column(name = "id_pedido")
-	private Integer idPedido;
-	
-	@Column(name = "id_produto")
-	private Integer idProduto;
+
+	@ManyToOne
+	@JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+	private Produto produto;
+
+	@ManyToOne
+	@JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
+	private Pedido pedido;
 
 	public Integer getIdItemPedido() {
 		return idItemPedido;
@@ -84,22 +87,20 @@ public class ItemPedido {
 		this.valorLiquido = valorLiquido;
 	}
 
-	public Integer getIdPedido() {
-		return idPedido;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setIdPedido(Integer idPedido) {
-		this.idPedido = idPedido;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
-	public Integer getIdProduto() {
-		return idProduto;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
-	
-	
 
 }
