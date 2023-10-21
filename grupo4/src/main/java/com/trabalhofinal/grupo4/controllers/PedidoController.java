@@ -18,7 +18,7 @@ import com.trabalhofinal.grupo4.entities.Pedido;
 import com.trabalhofinal.grupo4.services.PedidoServices;
 
 	@RestController
-	@RequestMapping("/pedidoController")
+	@RequestMapping("/pedidos")
 	public class PedidoController {
 		
 		@Autowired
