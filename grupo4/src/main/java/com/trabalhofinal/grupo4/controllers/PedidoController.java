@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trabalhofinal.grupo4.dto.PedidoDTO;
 import com.trabalhofinal.grupo4.entities.Pedido;
 import com.trabalhofinal.grupo4.services.PedidoServices;
 
@@ -56,4 +57,14 @@ import com.trabalhofinal.grupo4.services.PedidoServices;
 				return new ResponseEntity<>("Não foi possivel deletar", HttpStatus.BAD_REQUEST);
 			}
 		}
-}
+		@GetMapping("/relatorio/{id}")
+        public ResponseEntity<PedidoDTO> RelatorioPedido(@PathVariable Integer id) {
+            PedidoDTO pedidoDTO = pedidoServices.listarPedidoServices(id);
+            if (pedidoDTO == null) {
+                return new ResponseEntity<>(pedidoDTO, HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(pedidoDTO, HttpStatus.OK);
+            }
+        }
+
+    }
