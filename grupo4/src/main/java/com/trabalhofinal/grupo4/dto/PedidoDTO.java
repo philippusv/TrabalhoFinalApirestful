@@ -2,40 +2,24 @@ package com.trabalhofinal.grupo4.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class PedidoDTO {
 
-	private Date dataEntrega;
-	private Date dataEnvio;
 	private Integer idPedido;
+	private Date dataPedido;
 	private BigDecimal valorTotal;
-	
+	private List<ItemPedidoDTO> itensPedido;
+
 	public PedidoDTO() {
-		
+
 	}
 
-	public PedidoDTO(Date dataEntrega, Date dataEnvio, Integer idPedido, BigDecimal valorTotal) {
-		
-		this.dataEntrega = dataEntrega;
-		this.dataEnvio = dataEnvio;
+	public PedidoDTO(Integer idPedido, Date dataPedido, BigDecimal valorTotal, List<ItemPedidoDTO> itensPedido) {
 		this.idPedido = idPedido;
+		this.dataPedido = dataPedido;
 		this.valorTotal = valorTotal;
-	}
-
-	public Date getDataEntrega() {
-		return dataEntrega;
-	}
-
-	public void setDataEntrega(Date dataEntrega) {
-		this.dataEntrega = dataEntrega;
-	}
-
-	public Date getDataEnvio() {
-		return dataEnvio;
-	}
-
-	public void setDataEnvio(Date dataEnvio) {
-		this.dataEnvio = dataEnvio;
+		this.itensPedido = itensPedido;
 	}
 
 	public Integer getIdPedido() {
@@ -46,6 +30,14 @@ public class PedidoDTO {
 		this.idPedido = idPedido;
 	}
 
+	public Date getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(Date dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
@@ -53,7 +45,13 @@ public class PedidoDTO {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
-	
-	
+
+	public List<ItemPedidoDTO> getItensPedido() {
+		return itensPedido;
+	}
+
+	public void setItensPedido(List<ItemPedidoDTO> itensPedido) {
+		this.itensPedido = itensPedido;
+	}
+
 }

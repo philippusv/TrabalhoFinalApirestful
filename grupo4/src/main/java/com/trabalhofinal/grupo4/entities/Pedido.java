@@ -114,4 +114,12 @@ public class Pedido {
 		this.itensPedidos = itensPedidos;
 	}
 
+	@Override
+	public String toString() {
+		return "Pedido [idPedido=" + idPedido + "\n dataPedido=" + dataPedido + "\n dataEntrega=" + dataEntrega
+				+ "\n dataEnvio=" + dataEnvio + "\n status=" + status + "\n valorTotal=" + valorTotal + "\n itensPedidos="
+				+ itensPedidos + "\n cliente=" + cliente + "]";
+	}
+
+	
 }

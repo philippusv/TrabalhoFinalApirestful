@@ -31,7 +31,8 @@ public class ItemPedido {
 	@Column(name = "preco_venda")
 	private BigDecimal precoVenda;
 
-	// @Column(name = "percentual_desconto")
+	@Column(name = "percentual_desconto")
+	private BigDecimal percentualDesconto;
 
 	@Column(name = "valor_bruto")
 	private BigDecimal valorBruto;
@@ -101,6 +102,14 @@ public class ItemPedido {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+	public BigDecimal getPercentualDesconto() {
+		return percentualDesconto;
+	}
+
+	public void setPercentualDesconto(BigDecimal percentualDesconto) {
+		this.percentualDesconto = percentualDesconto;
 	}
 
 }

@@ -5,44 +5,82 @@ import java.math.BigDecimal;
 public class ItemPedidoDTO {
 
 	private Integer idItemPedido;
-	private String produto;
 	private Integer quantidade;
+	private BigDecimal precoVenda;
+	private BigDecimal percentualDesconto;
+	private BigDecimal valorBruto;
 	private BigDecimal valorLiquido;
+	private String nome;
+
 	public ItemPedidoDTO() {
-		
+
 	}
-	public ItemPedidoDTO(Integer idItemPedido, String produto, Integer quantidade, BigDecimal valorLiquido) {
-		
+
+	public ItemPedidoDTO(Integer idItemPedido, Integer quantidade, BigDecimal precoVenda, BigDecimal percentualDesconto,
+			BigDecimal valorBruto, BigDecimal valorLiquido, String nome) {
 		this.idItemPedido = idItemPedido;
-		this.produto = produto;
 		this.quantidade = quantidade;
+		this.precoVenda = precoVenda;
+		this.percentualDesconto = percentualDesconto;
+		this.valorBruto = valorBruto;
 		this.valorLiquido = valorLiquido;
+		this.nome = nome;
 	}
+
 	public Integer getIdItemPedido() {
 		return idItemPedido;
 	}
+
 	public void setIdItemPedido(Integer idItemPedido) {
 		this.idItemPedido = idItemPedido;
 	}
-	public String getProduto() {
-		return produto;
-	}
-	public void setProduto(String produto) {
-		this.produto = produto;
-	}
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}
+
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+
+	public BigDecimal getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(BigDecimal precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+
+	public BigDecimal getPercentualDesconto() {
+		return percentualDesconto;
+	}
+
+	public void setPercentualDesconto(BigDecimal percentualDesconto) {
+		this.percentualDesconto = percentualDesconto;
+	}
+
+	public BigDecimal getValorBruto() {
+		return valorBruto;
+	}
+
+	public void setValorBruto(BigDecimal valorBruto) {
+		this.valorBruto = valorBruto;
+	}
+
 	public BigDecimal getValorLiquido() {
 		return valorLiquido;
 	}
+
 	public void setValorLiquido(BigDecimal valorLiquido) {
 		this.valorLiquido = valorLiquido;
 	}
-	
-	
-	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 }
