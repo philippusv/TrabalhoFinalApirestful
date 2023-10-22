@@ -43,7 +43,8 @@ public class Produto {
 	@Column(name = "valor_unitario")
 	private BigDecimal valorUnitario;
 
-	// @Column(name = "imagem")
+	@Column(name = "imagem")
+	private String imagem;
 
 	@ManyToOne
 	@JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
@@ -114,6 +115,14 @@ public class Produto {
 
 	public void setItensPedidos(List<ItemPedido> itensPedidos) {
 		this.itensPedidos = itensPedidos;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 }
