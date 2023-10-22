@@ -20,7 +20,7 @@ import com.trabalhofinal.grupo4.services.ProdutoServices;
 
 
 	@RestController
-	@RequestMapping("/produtoController")
+	@RequestMapping("/produtos")
 	public class ProdutoController {
 		
 		@Autowired

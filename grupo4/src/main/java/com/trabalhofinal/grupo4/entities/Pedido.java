@@ -17,7 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoria", scope = Pedido.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPedido", scope = Pedido.class)
 
 @Entity
 @Table(name = "pedido")
@@ -114,4 +114,12 @@ public class Pedido {
 		this.itensPedidos = itensPedidos;
 	}
 
+	@Override
+	public String toString() {
+		return "Pedido [idPedido=" + idPedido + "\n dataPedido=" + dataPedido + "\n dataEntrega=" + dataEntrega
+				+ "\n dataEnvio=" + dataEnvio + "\n status=" + status + "\n valorTotal=" + valorTotal + "\n itensPedidos="
+				+ itensPedidos + "\n cliente=" + cliente + "]";
+	}
+
+	
 }
