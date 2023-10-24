@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trabalhofinal.grupo4.dto.CepDTO;
 import com.trabalhofinal.grupo4.entities.Endereco;
 import com.trabalhofinal.grupo4.services.EnderecoServices;
 
@@ -58,8 +57,4 @@ public class EnderecoController {
 		}
 	}
 	
-	@GetMapping("/consulta-cep/{cep}")
-    public ResponseEntity<CepDTO> consultaCep(@PathVariable String cep) {
-        return new ResponseEntity<>(enderecoServices.consultaCep(cep), HttpStatus.OK);
-    }
 }

@@ -3,10 +3,10 @@ package com.trabalhofinal.grupo4.dto;
 public class CepDTO {
 
 	private String cep;
-	private String rua;
+	private String logradouro;
 	private String complemento;
 	private String bairro;
-	private String cidade;
+	private String localidade;
 	private String numero;
 	private String uf;
 
@@ -14,13 +14,13 @@ public class CepDTO {
 		
 	}
 
-	public CepDTO(String cep, String rua, String complemento, String bairro, String cidade, String numero, String uf) {
+	public CepDTO(String cep, String logradouro, String complemento, String bairro, String localidade, String numero, String uf) {
 		
 		this.cep = cep;
-		this.rua = rua;
+		this.logradouro = logradouro;
 		this.complemento = complemento;
 		this.bairro = bairro;
-		this.cidade = cidade;
+		this.localidade = localidade;
 		this.numero = numero;
 		this.uf = uf;
 	}
@@ -34,11 +34,11 @@ public class CepDTO {
 	}
 
 	public String getRua() {
-		return rua;
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setRua(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getComplemento() {
@@ -58,11 +58,11 @@ public class CepDTO {
 	}
 
 	public String getCidade() {
-		return cidade;
+		return localidade;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setCidade(String localidade) {
+		this.localidade = localidade;
 	}
 
 	public String getNumero() {
@@ -81,4 +81,22 @@ public class CepDTO {
 		this.uf = uf;
 	}
 
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+
+	
+	
 }

@@ -1,8 +1,6 @@
 package com.trabalhofinal.grupo4.services;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +26,30 @@ public class EnderecoServices {
 	}
 
 	public Endereco salvarEndereco(Endereco endereco) {
-		return enderecoRepo.save(endereco);
-	}
+        // Crie uma instância do RestTemplate
+        RestTemplate restTemplate = new RestTemplate();
+
+        // Faça uma chamada à API ViaCEP para obter os dados do CEP
+        String viaCEPUrl = "https://viacep.com.br/ws/" + endereco.getCep() + "/json";
+        CepDTO viaCEPResponse = restTemplate.getForObject(viaCEPUrl, CepDTO.class);
+        try {
+
+            endereco.setRua(viaCEPResponse.getLogradouro());
+            endereco.setBairro(viaCEPResponse.getBairro());
+            endereco.setCidade(viaCEPResponse.getLocalidade());
+            endereco.setComplemento(viaCEPResponse.getComplemento());
+            endereco.setUf(viaCEPResponse.getUf());
+        } catch (NullPointerException e) {
+            System.out.println(e);
+
+        }
+
+        // Retorna os dados da instâcia Endereco. E precisa ter os
+        // parametros
+        // instancia e
+        // objeto com os dados..
+        return enderecoRepo.save(endereco); // salvar os dados do novo Endereco e salva no objeto endereco.
+    }
 
 	public Endereco atualizarEndereco(Endereco endereco) {
 		return enderecoRepo.save(endereco);
@@ -55,15 +75,4 @@ public class EnderecoServices {
 
 	}
 
-	public CepDTO consultaCep(String cep) {
-		RestTemplate restTemplate = new RestTemplate();
-		String uri = "https://viacep.com.br/ws/%7Bcep%7D/json";
-
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("cep", cep);
-
-		CepDTO cepDto = restTemplate.getForObject(uri, CepDTO.class, params);
-
-		return cepDto;
-	}
 }
