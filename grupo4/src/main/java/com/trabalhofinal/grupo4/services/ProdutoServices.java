@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trabalhofinal.grupo4.entities.Produto;
+import com.trabalhofinal.grupo4.exceptions.ProdutoNotFoundException;
 import com.trabalhofinal.grupo4.repository.ProdutoRepository;
 
 import io.jsonwebtoken.io.IOException;
@@ -52,7 +53,7 @@ public class ProdutoServices {
 	}
 
 	public Produto buscarProdutoServicesPorId(Integer id) {
-		return produtoRepo.findById(id).orElse(null);
+		return produtoRepo.findById(id).orElseThrow(() -> new ProdutoNotFoundException(id));
 	}
 
 	public Produto salvarProdutoServices(Produto produtoServices) {
@@ -79,8 +80,7 @@ public class ProdutoServices {
 		return produtoContinuaExistindo == null;
 	}
 
-	public Produto salvarProdutoComFoto(String strProduto, MultipartFile arqImg)
-			throws java.io.IOException {
+	public Produto salvarProdutoComFoto(String strProduto, MultipartFile arqImg) throws java.io.IOException {
 		Produto produto = new Produto();
 
 		try {
@@ -91,7 +91,6 @@ public class ProdutoServices {
 			System.out.println("Erro ao converter a string Produto: " + e.toString());
 		}
 
-//editora.setImagemFileName(arqImg.getBytes());
 		produto.setImagem(arqImg.getBytes());
 
 		return produtoRepo.save(produto);
