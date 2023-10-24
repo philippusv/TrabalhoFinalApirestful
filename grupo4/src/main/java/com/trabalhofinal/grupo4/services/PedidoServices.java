@@ -1,5 +1,6 @@
 package com.trabalhofinal.grupo4.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,5 +120,15 @@ public class PedidoServices {
 
 		return pedidoDTO;
 	}
-
+	public void gerarValorTotal(Pedido pedido) {
+		BigDecimal valorTotal = new BigDecimal(0);
+		if(pedido.getItensPedidos() != null) {
+			for(ItemPedido itemPedido : pedido.getItensPedidos()) {
+				valorTotal = valorTotal.add(itemPedido.getValorLiquido());
+			}
+		}
+		pedido.setValorTotal(valorTotal);
+		pedidoRepo.save(pedido);
+	}
+		
 }

@@ -40,7 +40,7 @@ public class ItemPedidoController {
 
 	@PostMapping
 	public ResponseEntity<ItemPedido> salvar(@RequestBody ItemPedido itemPedido) {
-		return new ResponseEntity<>(itemPedidoServices.salvarItemPedidoServices(itemPedido), HttpStatus.CREATED);
+		return new ResponseEntity<>(itemPedidoServices.cadastrar(itemPedido), HttpStatus.CREATED);
 	}
 
 	@PutMapping
