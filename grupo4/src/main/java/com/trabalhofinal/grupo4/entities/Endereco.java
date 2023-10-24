@@ -45,6 +45,25 @@ public class Endereco {
 
 	@OneToOne(mappedBy = "endereco")
 	private Cliente cliente;
+	
+	
+
+	public Endereco() {
+		
+	}
+
+	public Endereco(Integer idEndereco, String cep, String rua, String bairro, String cidade, String numero,
+			String complemento, String uf, Cliente cliente) {
+		this.idEndereco = idEndereco;
+		this.cep = cep;
+		this.rua = rua;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.uf = uf;
+		this.cliente = cliente;
+	}
 
 	public Integer getIdEndereco() {
 		return idEndereco;

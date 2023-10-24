@@ -56,4 +56,5 @@ public class EnderecoController {
 			return new ResponseEntity<>("Não foi possivel deletar", HttpStatus.BAD_REQUEST);
 		}
 	}
+	
 }

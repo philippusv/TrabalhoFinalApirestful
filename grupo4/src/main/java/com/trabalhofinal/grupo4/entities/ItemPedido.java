@@ -48,6 +48,22 @@ public class ItemPedido {
 	@JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
 	private Pedido pedido;
 
+	public ItemPedido() {
+
+	}
+
+	public ItemPedido(Integer idItemPedido, Integer quantidade, BigDecimal precoVenda, BigDecimal percentualDesconto,
+			 Produto produto, Pedido pedido) {
+		this.idItemPedido = idItemPedido;
+		this.quantidade = quantidade;
+		this.precoVenda = precoVenda;
+		this.percentualDesconto = percentualDesconto;
+		this.valorBruto = precoVenda.multiply(BigDecimal.valueOf(quantidade));
+		this.valorLiquido = valorBruto.subtract(valorBruto.multiply(percentualDesconto));
+		this.produto = produto;
+		this.pedido = pedido;
+	}
+
 	public Integer getIdItemPedido() {
 		return idItemPedido;
 	}

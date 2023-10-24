@@ -36,9 +36,7 @@ public class ProdutoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> buscarPorId(@PathVariable Integer id) {
 		Produto produto = produtoServices.buscarProdutoServicesPorId(id);
-		if (produto == null)
-			return new ResponseEntity<>(produto, HttpStatus.NOT_FOUND);
-		else
+	
 			return new ResponseEntity<>(produto, HttpStatus.OK);
 	}
 
